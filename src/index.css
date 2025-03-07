@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+    --color-fondo: #fbfefb;
+    --color-fondo2: #a0a7ac;
+    --color-letra: #2a3b47;
+
+    --color-cardAzul: #28bdea;
+    --color-cardAzulClaro: #9cfff5;
+
+    --color-cardRojo: #ff4d49;
+    --color-cardRojoClaro: #ff9f9f;
+
+    --color-cardAmarillo: #fdb528;
+    --color-cardAmarilloClaro: #ffeb7b;
+
+    --color-cardVioleta: #7117eb;
+    --color-cardVioletaClaro: #cba5ff;
+
+    --color-cardNaranja: #ff9224;
+    --color-cardNaranjaClaro: #ffaf5e;
+
+    --color-cardVerde: #3a9200;
+    --color-cardVerdeClaro: #9dff5b;
+}
+
+.dark {
+    --color-fondo: #2f334d;
+    --color-fondo2: #3d405c;
+    --color-letra: #ffffff;
+}
+
+* {
+    color: var(--color-letra);
+}
+
+body {
+    background-color: var(--color-fondo);
+}
+
+.svg-container svg {
+    width: 100%;
+    height: auto;
+}
+
+.svg-container svg path {
+    fill: var(--color-letra);
+}
+
+.cardAzul {
+    /* background: #28bdea; */
+    background: linear-gradient(to right, #2ba2f2 13%, #9cfff5 100%);
+}
+
+.cardRojo {
+    background: #ff4d49;
+    background: linear-gradient(to right, #ff4d49 0%, #ff9f9f 100%);
+}
