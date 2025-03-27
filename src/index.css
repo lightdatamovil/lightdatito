@@ -1,42 +1,40 @@
-@import "tailwindcss";
-
-@theme {
+:root {
     --color-fondo: #fbfefb;
     --color-fondo2: #a0a7ac;
     --color-letra: #2a3b47;
 
-    --color-cardAzul: #28bdea;
-    --color-cardAzulClaro: #9cfff5;
+    --color-cardazul: #2ba2f2;
+    --color-cardazulclaro: #23f0db;
 
-    --color-cardRojo: #ff4d49;
-    --color-cardRojoClaro: #ff9f9f;
+    --color-cardrojo: #ff4d49;
+    --color-cardrojoclaro: #e76363;
 
-    --color-cardAmarillo: #fdb528;
-    --color-cardAmarilloClaro: #ffeb7b;
+    --color-cardamarillo: #fdb528;
+    --color-cardamarilloclaro: #ffd900;
 
-    --color-cardVioleta: #7117eb;
-    --color-cardVioletaClaro: #cba5ff;
+    --color-cardvioleta: #6c00ff;
+    --color-cardvioletaclaro: #d2b0ff;
 
-    --color-cardNaranja: #ff9224;
-    --color-cardNaranjaClaro: #ffaf5e;
+    --color-cardnaranja: #ff991c;
+    --color-cardnaranjaclaro: #ffb264;
 
-    --color-cardVerde: #3a9200;
-    --color-cardVerdeClaro: #9dff5b;
+    --color-cardverde: #41a100;
+    --color-cardverdeclaro: #89ff3b;
 }
 
-.dark {
+/* .dark {
     --color-fondo: #2f334d;
     --color-fondo2: #3d405c;
     --color-letra: #ffffff;
-}
+} */
 
-* {
+/* * {
     color: var(--color-letra);
-}
+} */
 
-body {
+/* body {
     background-color: var(--color-fondo);
-}
+} */
 
 .svg-container svg {
     width: 100%;
@@ -47,12 +45,68 @@ body {
     fill: var(--color-letra);
 }
 
-.cardAzul {
-    /* background: #28bdea; */
-    background: linear-gradient(to right, #2ba2f2 13%, #9cfff5 100%);
+.cardazul {
+    background: linear-gradient(to right, var(--color-cardazul) 13%, var(--color-cardazulclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
 }
 
-.cardRojo {
-    background: #ff4d49;
-    background: linear-gradient(to right, #ff4d49 0%, #ff9f9f 100%);
+.cardazul:hover {
+    background-position: 0 0;
+}
+
+.cardrojo {
+    background: linear-gradient(to right, var(--color-cardrojo) 0%, var(--color-cardrojoclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
+}
+
+.cardrojo:hover {
+    background-position: 0 0;
+}
+
+.cardamarillo {
+    background: linear-gradient(to right, var(--color-cardamarillo) 31%, var(--color-cardamarilloclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
+}
+
+.cardamarillo:hover {
+    background-position: 0 0;
+}
+
+.cardvioleta {
+    background: linear-gradient(to right, var(--color-cardvioleta) 0%, var(--color-cardvioletaclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
+}
+
+.cardvioleta:hover {
+    background-position: 0 0;
+}
+
+.cardnaranja {
+    background: linear-gradient(to right, var(--color-cardnaranja) 0%, var(--color-cardnaranjaclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
+}
+
+.cardnaranja:hover {
+    background-position: 0 0;
+}
+
+.cardverde {
+    background: linear-gradient(to right, var(--color-cardverde) 24%, var(--color-cardverdeclaro) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.5s ease;
+}
+
+.cardverde:hover {
+    background-position: 0 0;
 }
