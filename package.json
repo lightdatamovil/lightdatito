@@ -15,7 +15,9 @@
     "@fontsource/roboto": "^5.2.5",
     "@mui/icons-material": "^7.0.0",
     "@mui/material": "^7.0.0",
+    "@mui/x-date-pickers": "^7.28.2",
     "@toolpad/core": "^0.13.0",
+    "dayjs": "^1.11.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0"

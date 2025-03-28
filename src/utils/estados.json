@@ -1,0 +1,7 @@
+[
+    {"did": 1, "nombre": "Pendiente", "color": "#FF4D49"},
+    {"did": 2, "nombre": "Resuelto", "color": "#3A9200"},
+    {"did": 3, "nombre": "En curso", "color": "#FDB528"},
+    {"did": 4, "nombre": "Desestimado", "color": "#FF9224"},
+    {"did": 5, "nombre": "Cerrado", "color": "#7117EB"}
+]

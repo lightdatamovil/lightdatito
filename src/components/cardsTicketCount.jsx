@@ -11,8 +11,6 @@ export const CardsTicketCount = () => {
         { id: 6, nombre: "Resueltos", cantidad: 4, color: "verde" },
     ]
 
-    console.log(cards)
-
     return (
         <Grid container spacing={2} sx={{ height: "100%", width: "100%" }}>
             {cards.length > 0 && cards.map((data) => <CardTicketCount data={data} key={data.id} />)}

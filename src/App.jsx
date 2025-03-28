@@ -1,4 +1,3 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { AppProvider } from "@toolpad/core/AppProvider"
 import { DashboardLayout } from "@toolpad/core/DashboardLayout"
 import { useDemoRouter } from "@toolpad/core/internal"
@@ -19,6 +18,7 @@ import { Listado } from "./views/listado"
 import { NuevoUsuario } from "./views/nuevoUsuario"
 import { ListadoLogisticas } from "./views/listadoLogisticas"
 
+import { demoTheme } from "./utils/tema"
 import LogoDark from "./utils/logoNavDark.svg"
 
 import "./index.css"
@@ -74,30 +74,6 @@ const NAVIGATION = [
         ],
     },
 ]
-
-const demoTheme = createTheme({
-    cssVariables: {
-        colorSchemeSelector: "data-toolpad-color-scheme",
-    },
-    colorSchemes: {
-        light: {
-            palette: {
-                background: {
-                    default: "#ffffff",
-                    paper: "#F9F9FE",
-                },
-            },
-        },
-        dark: {
-            palette: {
-                background: {
-                    default: "#30334E",
-                    paper: "#3D405D",
-                },
-            },
-        },
-    },
-})
 
 function DemoPageContent({ pathname }) {
     const content = pageComponents[pathname] || <Typography>Seleccione una página en la barra lateral.</Typography>
