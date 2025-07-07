@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+    --color-tito-primary: #683ee6;
+    --color-tito-secondary: #cbfd02;
+    --color-tito-black: #0f0d18;
+    --color-tito-blue: #2f1c6a;
+    --color-tito-red: #f25236;
+    --color-tito-bluedark: #0d0035;
+
+    --font-1: "Gantari", sans-serif;
+    --font-2: "Overpass", sans-serif;
+}
+
+:root {
+    font-family: var(--font-1);
+    background-color: rgb(47, 47, 47);
+}
+
+@layer utilities {
+    .animate-gradient-x {
+        background-size: 400% 400%;
+        animation: gradient-x 4s ease-in-out infinite;
+    }
+
+    @keyframes gradient-x {
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .gradient-glow {
+        background-size: 400% 400%;
+        animation: gradient-x 1.5s ease-in-out infinite;
+    }
+}
