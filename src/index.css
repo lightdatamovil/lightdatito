@@ -8,13 +8,16 @@
     --color-tito-red: #f25236;
     --color-tito-bluedark: #0d0035;
 
+    --color-tito-bg-primary: #30334e;
+    --color-tito-bg-secondary: #3d405d;
+
     --font-1: "Gantari", sans-serif;
     --font-2: "Overpass", sans-serif;
 }
 
 :root {
     font-family: var(--font-1);
-    background-color: rgb(47, 47, 47);
+    background-color: var(--color-tito-bg-primary);
 }
 
 @layer utilities {

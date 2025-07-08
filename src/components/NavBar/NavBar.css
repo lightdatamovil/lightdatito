@@ -1,0 +1,12 @@
+@keyframes wipe-in-down {
+    from {
+        clip-path: inset(0 0 100% 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.dropdowns_NavBar {
+    animation: 0.5s cubic-bezier(0.25, 1, 0.3, 1) wipe-in-down both;
+}
