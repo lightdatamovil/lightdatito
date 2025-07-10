@@ -20,8 +20,8 @@ function App() {
         <div className="relative w-screen h-screen flex overflow-hidden">
             <Sidebar navigation={navigation} setSidebarWidth={setSidebarWidth} setModulo={setModulo} />
             <div className="h-full flex flex-col transition-all duration-300 ease-in-out" style={{ marginLeft: sidebarWidth, width: `calc(100% - ${sidebarWidth})` }}>
-                <div className="w-full bg-tito-bg-secondary h-16 shadow-lg px-10 flex items-center">{modulo}</div>
-                <div className="flex-1 p-10 overflow-y-auto">
+                <div className="w-full bg-tito-bg-secondary h-1/15 shadow-lg px-10 flex items-center">{modulo}</div>
+                <div className="h-14/15 p-10">
                     <Routes>
                         <Route path="/" element={<Inicio />} />
                         <Route path="/crear-ticket" element={<CrearTickets />} />
