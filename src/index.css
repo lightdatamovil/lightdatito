@@ -7,12 +7,13 @@
     --color-tito-blue: #2f1c6a;
     --color-tito-red: #f25236;
     --color-tito-bluedark: #0d0035;
+    --color-tito-gray: #9ea0b7;
+    --color-tito-lila: #c3a1ff;
 
     --color-tito-bg-primary: #30334e;
     --color-tito-bg-secondary: #3d405d;
 
-    --font-1: "Gantari", sans-serif;
-    --font-2: "Overpass", sans-serif;
+    --font-1: "Roboto", sans-serif;
 }
 
 :root {
@@ -41,3 +42,35 @@
         animation: gradient-x 1.5s ease-in-out infinite;
     }
 }
+
+/* SCROLL */
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+*::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: var(--color-tito-bg-primary);
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: var(--color-tito-bg-primary);
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: var(--color-tito-bg-primary);
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #626262;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #838383;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #aeaeae;
+}
+/* /SCROLL */

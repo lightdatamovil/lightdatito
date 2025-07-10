@@ -7,7 +7,7 @@ import { FaRegAddressCard } from "react-icons/fa"
 import { LuTruck } from "react-icons/lu"
 
 const navigation = [
-    { name: "Inicio", href: "inicio", icon: <GrHomeRounded className="size-6" /> },
+    { name: "Inicio", href: "/", icon: <GrHomeRounded className="size-6" /> },
     {
         name: "Ticket",
         href: "",

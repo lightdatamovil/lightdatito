@@ -1,6 +1,6 @@
 import type { JSX } from "react"
 
-export type NavBarItem = {
+export type SidebarItem = {
     name: string
     href: string
     icon: JSX.Element
@@ -11,6 +11,8 @@ export type NavBarItem = {
     }[]
 }
 
-export type NavBarProps = {
-    navigation: NavBarItem[]
+export type SidebarProps = {
+    navigation: SidebarItem[]
+    setSidebarWidth: (width: string) => void
+    setModulo: (modulo: string) => void
 }
