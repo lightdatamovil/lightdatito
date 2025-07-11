@@ -1,4 +1,5 @@
 import ButtonCopy from "../../components/ButtonCopy/ButtonCopy"
+import ButtonRedirect from "../../components/ButtonRedirect/ButtonRedirect"
 import Input from "../../components/Input/Input"
 import Select from "../../components/Select/Select"
 import data from "../../utils/logisticas.json"
@@ -33,13 +34,26 @@ const Logisticas = () => {
                     <option value="6">Ecuador</option>
                 </Select>
             </div>
-            <div></div>
-            <div className="flex-1 mt-10 overflow-y-auto pe-2 py-2">
+            <div className="mt-10 shadow-xl">
+                <div className="min-h-14 grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10">
+                    <div className="flex items-center">N° de Log</div>
+                    <div className="flex items-center col-span-3 sm:col-span-3 lg:col-span-2">Foto y Nombre</div>
+                    <div className="hidden lg:flex items-center">URL</div>
+                    <div className="hidden sm:flex items-center ">Contraseña</div>
+                    <div className="hidden sm:flex items-center ">Codigo</div>
+
+                    <div className="hidden sm:flex items-center justify-center">País</div>
+                    <div className="hidden sm:flex items-center justify-center">Plan contratado</div>
+                    <div className="hidden sm:flex items-center justify-center">Estado</div>
+                    <div className="flex items-center">Detalle</div>
+                </div>
+            </div>
+            <div className="flex-1 overflow-y-auto pe-2 py-7">
                 <ul className="flex flex-col gap-7">
                     {data.map((item) => {
                         return (
                             <li key={item.did}>
-                                <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-9 px-3 sm:px-10 hover:border border-white">
+                                <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10 hover:border border-white">
                                     <div className="flex items-center gap-3">
                                         {item.did}
                                         <ButtonCopy value={item.did.toString()} />
@@ -51,8 +65,13 @@ const Logisticas = () => {
                                     <div className="hidden lg:flex items-center gap-2">
                                         <p className="break-words whitespace-normal">URL</p>
                                         <ButtonCopy value={item.url_sistema} />
+                                        <ButtonRedirect value={item.url_sistema} />
                                     </div>
-                                    <div className="hidden sm:flex justify-around items-center gap-2">
+                                    <div className="hidden sm:flex items-center gap-2">
+                                        <p className="break-words whitespace-normal">{item.password_soporte}</p>
+                                        <ButtonCopy value={item.password_soporte} />
+                                    </div>
+                                    <div className="hidden sm:flex items-center gap-2">
                                         <p className="break-words whitespace-normal">{item.codigo}</p>
                                         <ButtonCopy value={item.codigo} />
                                     </div>

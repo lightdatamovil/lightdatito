@@ -15,6 +15,8 @@
     --color-tito-bg-3: #535688;
 
     --color-tito-btn-gray: #8b8db2;
+    --color-tito-btn-green: #3a692c;
+    --color-tito-btn-border-green: #66ff00;
 
     --font-1: "Roboto", sans-serif;
 }
@@ -22,6 +24,7 @@
 :root {
     font-family: var(--font-1);
     background-color: var(--color-tito-bg-primary);
+    font-size: 14px;
 }
 
 @layer utilities {
