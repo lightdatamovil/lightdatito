@@ -12,7 +12,7 @@ const ButtonCopy = ({ value }: ButtonCopyProps) => {
     }
 
     return (
-        <button onClick={handleCopy} title="Copiar" className="h-7 w-7 bg-tito-btn-gray border border-white rounded-lg flex items-center justify-center cursor-pointer">
+        <button onClick={handleCopy} title="Copiar" className="h-7 min-w-7 bg-tito-btn-gray border border-white rounded-lg flex items-center justify-center cursor-pointer">
             <MdContentCopy />
         </button>
     )

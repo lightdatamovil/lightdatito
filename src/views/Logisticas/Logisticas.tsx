@@ -53,7 +53,7 @@ const Logisticas = () => {
                     {data.map((item) => {
                         return (
                             <li key={item.did}>
-                                <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10 hover:border border-white">
+                                <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10 border border-transparent hover:border-white">
                                     <div className="flex items-center gap-3">
                                         {item.did}
                                         <ButtonCopy value={item.did.toString()} />
