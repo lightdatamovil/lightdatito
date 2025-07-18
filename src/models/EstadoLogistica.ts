@@ -1,0 +1,5 @@
+export default interface EstadoLogistica {
+    id: number
+    nombre: string
+    color: string
+}
