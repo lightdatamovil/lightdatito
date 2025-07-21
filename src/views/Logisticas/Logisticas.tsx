@@ -1,11 +1,26 @@
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import ButtonCopy from "../../components/ButtonCopy/ButtonCopy"
 import ButtonRedirect from "../../components/ButtonRedirect/ButtonRedirect"
 import Input from "../../components/Input/Input"
 import Select from "../../components/Select/Select"
-import data from "../../utils/logisticas.json"
 import "./Logisticas.css"
+import { fetchLogisticas } from "../../features/logisticas/listSlice"
+import type { Logistica } from "../../features/logisticas/types"
 
 const Logisticas = () => {
+    const dispatch = useAppDispatch()
+    const { list, loadingList, errorList } = useAppSelector((state) => state.logisticas.list)
+
+    console.log(list, loadingList, errorList)
+
+    useEffect(() => {
+        dispatch(fetchLogisticas())
+    }, [dispatch])
+
+    if (loadingList) return <p>Cargando logísticas...</p>
+    if (errorList) return <p>Error: {errorList}</p>
+
     return (
         <div className="global-container flex flex-col">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-5">
@@ -50,7 +65,7 @@ const Logisticas = () => {
             </div>
             <div className="flex-1 overflow-y-auto pe-2 py-7">
                 <ul className="flex flex-col gap-7">
-                    {data.map((item) => {
+                    {list.map((item: Logistica) => {
                         return (
                             <li key={item.did}>
                                 <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10 border border-transparent hover:border-white">
@@ -75,9 +90,9 @@ const Logisticas = () => {
                                         <p className="break-words whitespace-normal">{item.codigo}</p>
                                         <ButtonCopy value={item.codigo} />
                                     </div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.pais_id}</div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.plan_id}</div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.estado_logistica_id}</div>
+                                    <div className="hidden sm:flex items-center justify-center">{item.pais.nombre}</div>
+                                    <div className="hidden sm:flex items-center justify-center">{item.plan_id.nombre}</div>
+                                    <div className="hidden sm:flex items-center justify-center">{item.estado_logistica_id.nombre}</div>
                                     <div className="flex items-center"></div>
                                 </div>
                             </li>

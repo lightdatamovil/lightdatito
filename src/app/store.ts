@@ -1,5 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit"
-import logisticasReducer from "../features/logisticas/logisticasSlice"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import listReducer from "../features/logisticas/listSlice"
+import detailReducer from "../features/logisticas/detailSlice"
+import formReducer from "../features/logisticas/formSlice"
+
+const logisticasReducer = combineReducers({
+    list: listReducer,
+    detail: detailReducer,
+    form: formReducer,
+})
 
 export const store = configureStore({
     reducer: {
