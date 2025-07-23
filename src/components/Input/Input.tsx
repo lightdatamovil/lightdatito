@@ -12,9 +12,9 @@ const Input = ({ id, label, value, onChange, defaulValue = "", disabled = false,
                 placeholder={`Buscar por ${label.toLowerCase()}`}
                 defaultValue={defaulValue}
                 disabled={disabled}
-                className={`peer h-[45px] w-full border bg-tito-bg-primary border-tito-gray rounded-xl px-4 text-[12px] focus:outline-none focus:border-tito-lila ${className}`}
+                className={`peer h-[45px] w-full border bg-tito-bg-primary border-tito-border-gray rounded-xl px-4 text-[12px] focus:outline-none focus:border-tito-lila ${className}`}
             />
-            <label htmlFor={id} className="absolute top-0 left-4 bg-tito-bg-primary px-1.5 text-tito-gray text-[12px] peer-focus:text-tito-lila transition-colors duration-200">
+            <label htmlFor={id} className="absolute top-0 left-4 bg-tito-bg-primary px-1.5 text-tito-border-gray text-[12px] peer-focus:text-tito-lila transition-colors duration-200">
                 {label}
             </label>
         </div>

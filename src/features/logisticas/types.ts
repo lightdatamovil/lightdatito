@@ -1,6 +1,6 @@
 import type EstadoLogistica from "../../models/EstadoLogistica"
-import type Pais from "../../models/Pais"
-import type Plan from "../../models/Plan"
+import type { Pais } from "../paises/types"
+import type { Plan } from "../planes/types"
 
 export interface Logistica {
     id: number

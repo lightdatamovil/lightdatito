@@ -55,7 +55,7 @@ const Sidebar = ({ navigation, setSidebarWidth, setModulo }: SidebarProps) => {
             <div
                 onMouseEnter={() => !expandido && setExpandirHover(true)}
                 onMouseLeave={() => !expandido && setExpandirHover(false)}
-                className={`fixed inset-y-0 left-0 z-60 w-full overflow-y-auto transition-all duration-500 ease-in-out bg-tito-bg-primary
+                className={`fixed inset-y-0 left-0 z-60 w-full overflow-y-auto transition-all duration-500 ease-in-out bg-tito-bg-secondary
                 ${isMobile ? (mobileMenuOpen ? "block" : "hidden") : "block"}
                 ${expandido || expandirHover ? `lg:max-w-[22rem]` : `lg:max-w-[4.5rem]`}
                 hover:lg:max-w-[22rem] shadow-2xl/70`}

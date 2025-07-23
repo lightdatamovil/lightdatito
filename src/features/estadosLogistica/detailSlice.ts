@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getPlanByDid } from "./api"
-import type { Plan } from "./types"
+import { getEstadoLogisticaByDid } from "./api"
+import type { EstadoLogistica } from "./types"
 
 interface DetailState {
-    detail: Plan | null
+    detail: EstadoLogistica | null
     loadingDetail: boolean
     errorDetail: string | null
 }
@@ -14,8 +14,8 @@ const initialState: DetailState = {
     errorDetail: null,
 }
 
-export const fetchPlanByDid = createAsyncThunk("planes/detail", async (did: number) => {
-    const res = await getPlanByDid(did)
+export const fetchEstadoLogisticaByDid = createAsyncThunk("estadoLogisticas/detail", async (did: number) => {
+    const res = await getEstadoLogisticaByDid(did)
     return res.data
 })
 
@@ -24,15 +24,15 @@ const detailSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPlanByDid.pending, (state) => {
+        builder.addCase(fetchEstadoLogisticaByDid.pending, (state) => {
             state.loadingDetail = true
             state.errorDetail = null
         })
-        builder.addCase(fetchPlanByDid.fulfilled, (state, action) => {
+        builder.addCase(fetchEstadoLogisticaByDid.fulfilled, (state, action) => {
             state.loadingDetail = false
             state.detail = action.payload
         })
-        builder.addCase(fetchPlanByDid.rejected, (state, action) => {
+        builder.addCase(fetchEstadoLogisticaByDid.rejected, (state, action) => {
             state.loadingDetail = false
             state.errorDetail = action.error.message || "Error"
         })

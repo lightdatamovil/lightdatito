@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getPlanes } from "./api"
-import type { Plan } from "./types"
+import { getEstadosLogistica } from "./api"
+import type { EstadoLogistica } from "./types"
 import axios from "axios"
 
 interface ListState {
-    list: Plan[]
+    list: EstadoLogistica[]
     loadingList: boolean
     errorList: string | null
 }
@@ -15,13 +15,13 @@ const initialState: ListState = {
     errorList: null,
 }
 
-export const fetchPlanes = createAsyncThunk<Plan[], void, { rejectValue: string }>("planes/list", async (_, thunkAPI) => {
+export const fetchEstadosLogistica = createAsyncThunk<EstadoLogistica[], void, { rejectValue: string }>("estadoLogistica/list", async (_, thunkAPI) => {
     try {
-        const res = await getPlanes()
+        const res = await getEstadosLogistica()
 
-        if (!res.data.success) {
-            return thunkAPI.rejectWithValue(res.data.message || "Error del servidor")
-        }
+        // if (!res.data.success) {
+        //     return thunkAPI.rejectWithValue(res.data.message || "Error del servidor")
+        // }
         return res.data.body
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
@@ -39,15 +39,15 @@ const listSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPlanes.pending, (state) => {
+        builder.addCase(fetchEstadosLogistica.pending, (state) => {
             state.loadingList = true
             state.errorList = null
         })
-        builder.addCase(fetchPlanes.fulfilled, (state, action) => {
+        builder.addCase(fetchEstadosLogistica.fulfilled, (state, action) => {
             state.loadingList = false
             state.list = action.payload
         })
-        builder.addCase(fetchPlanes.rejected, (state, action) => {
+        builder.addCase(fetchEstadosLogistica.rejected, (state, action) => {
             state.loadingList = false
             state.errorList = action.payload || "Error"
         })

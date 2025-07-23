@@ -10,7 +10,11 @@ import type { Logistica } from "../../features/logisticas/types"
 
 const Logisticas = () => {
     const dispatch = useAppDispatch()
-    const { list, loadingList, errorList } = useAppSelector((state) => state.logisticas.list)
+    const { list: listaLogistica, loadingList, errorList } = useAppSelector((state) => state.logisticas.list)
+    const { list: listaPlanes } = useAppSelector((state) => state.planes.list)
+    const { list: listaEstados } = useAppSelector((state) => state.estadosLogistica.list)
+    const { list: listaPaises } = useAppSelector((state) => state.paises.list)
+
     const [search, setSearch] = useState({
         nombre: "",
         numero: "",
@@ -19,10 +23,8 @@ const Logisticas = () => {
         pais: "",
     })
 
-    console.log(list)
-
     const filteredList = useMemo(() => {
-        return list.filter(
+        return listaLogistica.filter(
             (item) =>
                 item.nombre.toLowerCase().includes(search.nombre.toLowerCase()) &&
                 item.did.toString().includes(search.numero) &&
@@ -30,7 +32,7 @@ const Logisticas = () => {
                 (search.estado ? item.estado_logistica_id.id == parseInt(search.estado) : true) &&
                 (search.pais ? item.pais.id == parseInt(search.pais) : true)
         )
-    }, [search, list])
+    }, [search, listaLogistica])
 
     useEffect(() => {
         dispatch(fetchLogisticas())
@@ -46,77 +48,100 @@ const Logisticas = () => {
                 <Input id="filtroNumero_logisticas" label="Numero de logistica" value={search.numero} onChange={(e) => setSearch({ ...search, numero: e.target.value })} />
                 <Select id="filtroPlan_logisticas" label="Plan" value={search.plan} onChange={(e) => setSearch({ ...search, plan: e.target.value })}>
                     <option value="">Todos</option>
-                    <option value="1">Basico</option>
-                    <option value="2">Plus</option>
-                    <option value="3">Estandar</option>
-                    <option value="4">Premium</option>
-                    <option value="5">Gran Logistica</option>
+                    {listaPlanes.map((plan) => (
+                        <option key={plan.id} value={plan.id}>
+                            {plan.nombre}
+                        </option>
+                    ))}
                 </Select>
                 <Select id="filtroEstado_logisticas" label="Estado" value={search.estado} onChange={(e) => setSearch({ ...search, estado: e.target.value })}>
                     <option value="">Todos</option>
-                    <option value="1">Alta</option>
-                    <option value="2">Baja</option>
+                    {listaEstados.map((estado) => (
+                        <option key={estado.id} value={estado.id}>
+                            {estado.nombre}
+                        </option>
+                    ))}
                 </Select>
                 <Select id="filtroPais_logisticas" label="Pais" value={search.pais} onChange={(e) => setSearch({ ...search, pais: e.target.value })}>
                     <option value="">Todos</option>
-                    <option value="1">Argentina</option>
-                    <option value="2">Chile</option>
-                    <option value="3">Uruguay</option>
-                    <option value="4">Colombia</option>
-                    <option value="5">Mexico</option>
-                    <option value="6">Ecuador</option>
+                    {listaPaises.map((pais) => (
+                        <option key={pais.id} value={pais.id}>
+                            {pais.nombre}
+                        </option>
+                    ))}
                 </Select>
             </div>
-            <div className="mt-10 shadow-xl">
-                <div className="min-h-14 grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10">
-                    <div className="flex items-center">N° de Log</div>
-                    <div className="flex items-center col-span-3 sm:col-span-3 lg:col-span-2">Foto y Nombre</div>
-                    <div className="hidden lg:flex items-center">URL</div>
-                    <div className="hidden sm:flex items-center ">Contraseña</div>
-                    <div className="hidden sm:flex items-center ">Codigo</div>
 
-                    <div className="hidden sm:flex items-center justify-center">País</div>
-                    <div className="hidden sm:flex items-center justify-center">Plan contratado</div>
-                    <div className="hidden sm:flex items-center justify-center">Estado</div>
-                    <div className="flex items-center">Detalle</div>
-                </div>
-            </div>
-            <div className="flex-1 overflow-y-auto pe-2 py-7">
-                <ul className="flex flex-col gap-7">
-                    {filteredList.map((item: Logistica) => {
-                        return (
-                            <li key={item.did}>
-                                <div className="min-h-14 bg-tito-bg-3 rounded-xl grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-10 px-3 sm:px-10 border border-transparent hover:border-white">
+            <div className="mt-10 overflow-auto border border-tito-border-gray rounded-xl">
+                <table className="w-full table-auto border-collapse p-5">
+                    <thead className="sticky top-0 bg-tito-bg-primary z-10 ">
+                        <tr className="text-left font-medium shadow-xl border-b border-tito-border-gray text-tito-gray">
+                            <th>Logistica</th>
+                            <th>País</th>
+                            <th>URL</th>
+                            <th>Contraseña</th>
+                            <th>Codigo</th>
+                            <th>Plan contratado</th>
+                            <th>Estado</th>
+                            <th>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-tito-bg-secondary font-bold">
+                        {filteredList.map((item: Logistica) => (
+                            <tr key={item.did} className="border-b border-tito-border-gray hover:bg-tito-bg-primary transition-colors">
+                                <td>
                                     <div className="flex items-center gap-3">
-                                        {item.did}
-                                        <ButtonCopy value={item.did.toString()} />
-                                    </div>
-                                    <div className="flex items-center gap-3 col-span-3 sm:col-span-3 lg:col-span-2">
                                         <img src={item.url_imagen} alt="" className="bg-white h-10 w-10 rounded-full flex justify-center items-center object-contain" />
-                                        <p className="break-words whitespace-normal">{item.nombre}</p>
+                                        <div>
+                                            <p className="break-words whitespace-normal text-lg">{item.nombre}</p>
+                                            <p className="text-sm leading-none">#{item.did}</p>
+                                        </div>
                                     </div>
-                                    <div className="hidden lg:flex items-center gap-2">
+                                </td>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <img src="" alt="" className="bg-white h-10 w-10 rounded-full flex justify-center items-center object-contain" />
+                                        <div>
+                                            <p className="break-words whitespace-normal text-lg">{item.pais.codigo_iso}</p>
+                                            <p className="text-sm leading-none font-medium">{item.pais.nombre}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="flex items-center gap-3">
                                         <p className="break-words whitespace-normal">URL</p>
                                         <ButtonCopy value={item.url_sistema} />
                                         <ButtonRedirect value={item.url_sistema} />
                                     </div>
-                                    <div className="hidden sm:flex items-center gap-2">
-                                        <p className="break-words whitespace-normal">{item.password_soporte}</p>
-                                        <ButtonCopy value={item.password_soporte} />
+                                </td>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-2/3">
+                                            <p className="break-words whitespace-normal">{item.password_soporte}</p>
+                                        </div>
+                                        <div className="flex-1/3">
+                                            <ButtonCopy value={item.password_soporte} />
+                                        </div>
                                     </div>
-                                    <div className="hidden sm:flex items-center gap-2">
-                                        <p className="break-words whitespace-normal">{item.codigo}</p>
-                                        <ButtonCopy value={item.codigo} />
+                                </td>
+
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-2/3">
+                                            <p className="break-words whitespace-normal">{item.codigo}</p>
+                                        </div>
+                                        <div className="flex-1/3">
+                                            <ButtonCopy value={item.codigo} />
+                                        </div>
                                     </div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.pais.nombre}</div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.plan_id.nombre}</div>
-                                    <div className="hidden sm:flex items-center justify-center">{item.estado_logistica_id.nombre}</div>
-                                    <div className="flex items-center"></div>
-                                </div>
-                            </li>
-                        )
-                    })}
-                </ul>
+                                </td>
+                                <td>{item.plan_id.nombre}</td>
+                                <td>{item.estado_logistica_id.nombre}</td>
+                                <td></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     )

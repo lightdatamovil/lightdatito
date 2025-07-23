@@ -1,17 +1,43 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
-import listReducer from "../features/logisticas/listSlice"
-import detailReducer from "../features/logisticas/detailSlice"
-import formReducer from "../features/logisticas/formSlice"
+import listReducerLogisticas from "../features/logisticas/listSlice"
+import detailReducerLogisticas from "../features/logisticas/detailSlice"
+import formReducerLogisticas from "../features/logisticas/formSlice"
+import listReducerPlanes from "../features/planes/listSlice"
+import detailReducerPlanes from "../features/planes/detailSlice"
+import formReducerPlanes from "../features/planes/formSlice"
+import listReducerEstadosLogistica from "../features/estadosLogistica/listSlice"
+import detailReducerEstadosLogistica from "../features/estadosLogistica/detailSlice"
+import formReducerEstadosLogistica from "../features/estadosLogistica/formSlice"
+import listReducerPaises from "../features/paises/listSlice"
 
 const logisticasReducer = combineReducers({
-    list: listReducer,
-    detail: detailReducer,
-    form: formReducer,
+    list: listReducerLogisticas,
+    detail: detailReducerLogisticas,
+    form: formReducerLogisticas,
+})
+
+const planesReducer = combineReducers({
+    list: listReducerPlanes,
+    detail: detailReducerPlanes,
+    form: formReducerPlanes,
+})
+
+const estadoLogisticaReducer = combineReducers({
+    list: listReducerEstadosLogistica,
+    detail: detailReducerEstadosLogistica,
+    form: formReducerEstadosLogistica,
+})
+
+const paisesReducer = combineReducers({
+    list: listReducerPaises,
 })
 
 export const store = configureStore({
     reducer: {
         logisticas: logisticasReducer,
+        planes: planesReducer,
+        estadosLogistica: estadoLogisticaReducer,
+        paises: paisesReducer,
     },
 })
 

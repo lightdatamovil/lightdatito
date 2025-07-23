@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getPlanes } from "./api"
-import type { Plan } from "./types"
+import { getPaises } from "./api"
+import type { Pais } from "./types"
 import axios from "axios"
 
 interface ListState {
-    list: Plan[]
+    list: Pais[]
     loadingList: boolean
     errorList: string | null
 }
@@ -15,9 +15,9 @@ const initialState: ListState = {
     errorList: null,
 }
 
-export const fetchPlanes = createAsyncThunk<Plan[], void, { rejectValue: string }>("planes/list", async (_, thunkAPI) => {
+export const fetchPaises = createAsyncThunk<Pais[], void, { rejectValue: string }>("paises/list", async (_, thunkAPI) => {
     try {
-        const res = await getPlanes()
+        const res = await getPaises()
 
         if (!res.data.success) {
             return thunkAPI.rejectWithValue(res.data.message || "Error del servidor")
@@ -39,15 +39,15 @@ const listSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPlanes.pending, (state) => {
+        builder.addCase(fetchPaises.pending, (state) => {
             state.loadingList = true
             state.errorList = null
         })
-        builder.addCase(fetchPlanes.fulfilled, (state, action) => {
+        builder.addCase(fetchPaises.fulfilled, (state, action) => {
             state.loadingList = false
             state.list = action.payload
         })
-        builder.addCase(fetchPlanes.rejected, (state, action) => {
+        builder.addCase(fetchPaises.rejected, (state, action) => {
             state.loadingList = false
             state.errorList = action.payload || "Error"
         })

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { postPlan, putPlan, deletePlan } from "./api"
-import type { Plan } from "./types"
+import { postEstadoLogistica, putEstadoLogistica, deleteEstadoLogistica } from "./api"
+import type { EstadoLogistica } from "./types"
 
 interface FormState {
     loadingPost: boolean
@@ -20,18 +20,18 @@ const initialState: FormState = {
     errorDelete: null,
 }
 
-export const createPlan = createAsyncThunk("planes/post", async (data: Plan) => {
-    const res = await postPlan(data)
+export const createEstadoLogistica = createAsyncThunk("estadoLogistica/post", async (data: EstadoLogistica) => {
+    const res = await postEstadoLogistica(data)
     return res.data
 })
 
-export const updatePlan = createAsyncThunk("planes/put", async ({ did, data }: { did: number; data: Plan }) => {
-    const res = await putPlan(did, data)
+export const updateEstadoLogistica = createAsyncThunk("estadoLogistica/put", async ({ did, data }: { did: number; data: EstadoLogistica }) => {
+    const res = await putEstadoLogistica(did, data)
     return res.data
 })
 
-export const removePlan = createAsyncThunk("planes/delete", async (did: number) => {
-    await deletePlan(did)
+export const removeEstadoLogistica = createAsyncThunk("estadoLogistica/delete", async (did: number) => {
+    await deleteEstadoLogistica(did)
     return did
 })
 
@@ -40,39 +40,39 @@ const formSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(createPlan.pending, (state) => {
+        builder.addCase(createEstadoLogistica.pending, (state) => {
             state.loadingPost = true
             state.errorPost = null
         })
-        builder.addCase(createPlan.rejected, (state, action) => {
+        builder.addCase(createEstadoLogistica.rejected, (state, action) => {
             state.loadingPost = false
             state.errorPost = action.error.message || "Error"
         })
-        builder.addCase(createPlan.fulfilled, (state) => {
+        builder.addCase(createEstadoLogistica.fulfilled, (state) => {
             state.loadingPost = false
         })
 
-        builder.addCase(updatePlan.pending, (state) => {
+        builder.addCase(updateEstadoLogistica.pending, (state) => {
             state.loadingPut = true
             state.errorPut = null
         })
-        builder.addCase(updatePlan.rejected, (state, action) => {
+        builder.addCase(updateEstadoLogistica.rejected, (state, action) => {
             state.loadingPut = false
             state.errorPut = action.error.message || "Error"
         })
-        builder.addCase(updatePlan.fulfilled, (state) => {
+        builder.addCase(updateEstadoLogistica.fulfilled, (state) => {
             state.loadingPut = false
         })
 
-        builder.addCase(removePlan.pending, (state) => {
+        builder.addCase(removeEstadoLogistica.pending, (state) => {
             state.loadingDelete = true
             state.errorDelete = null
         })
-        builder.addCase(removePlan.rejected, (state, action) => {
+        builder.addCase(removeEstadoLogistica.rejected, (state, action) => {
             state.loadingDelete = false
             state.errorDelete = action.error.message || "Error"
         })
-        builder.addCase(removePlan.fulfilled, (state) => {
+        builder.addCase(removeEstadoLogistica.fulfilled, (state) => {
             state.loadingDelete = false
         })
     },
