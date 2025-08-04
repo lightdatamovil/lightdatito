@@ -62,8 +62,17 @@ const Sidebar = ({ navigation, setSidebarWidth, setModulo }: SidebarProps) => {
             >
                 <div className="flex w-full h-30 items-center justify-between p-6 shadow-2xl">
                     <NavLink to="/" className="flex items-center gap-4">
-                        <img alt="Logo" src={logo} className="h-8 w-auto" />
-                        {(expandirHover || expandido || isMobile) && <p className="text-2xl text-white">Lightdata</p>}
+                        <div className="max-h-12 max-w-12 p-1.5 bg-gradient-to-br from-tito-primary to-tito-secondary flex items-center justify-center rounded-md">
+                            <img alt="Logo" src={logo} className="h-full w-auto" />
+                        </div>
+
+                        {(expandirHover || expandido || isMobile) && (
+                            <p className="text-2xl text-white font-medium" style={{ lineHeight: 1 }}>
+                                Lightdata
+                                <br />
+                                soporte
+                            </p>
+                        )}
                     </NavLink>
 
                     {(expandirHover || expandido || isMobile) && (
@@ -91,7 +100,9 @@ const Sidebar = ({ navigation, setSidebarWidth, setModulo }: SidebarProps) => {
                                     <div key={item.name} className="relative w-full">
                                         <button
                                             onClick={() => toggleDropdown(item.name)}
-                                            className={`-mx-3 flex ${expandirHover || expandido || isMobile ? "w-full" : ""} items-center justify-between gap-3 rounded-lg px-3 py-2 text-base text-white hover:bg-tito-bg-secondary ${openItem === item.name ? "bg-tito-bg-secondary" : ""}`}
+                                            className={`-mx-3 flex ${expandirHover || expandido || isMobile ? "w-full" : ""} items-center justify-between gap-3 rounded-lg px-3 py-2 text-base text-white hover:bg-gradient-to-br from-tito-primary to-tito-secondary ${
+                                                openItem === item.name ? "bg-gradient-to-br from-tito-primary to-tito-secondary" : ""
+                                            }`}
                                         >
                                             <div className="flex w-full items-center gap-3">
                                                 {item.icon}
@@ -101,9 +112,9 @@ const Sidebar = ({ navigation, setSidebarWidth, setModulo }: SidebarProps) => {
                                         </button>
 
                                         {openItem === item.name && (expandirHover || expandido || isMobile) && (
-                                            <div className="mt-2 flex w-full flex-col rounded-lg bg-tito-bg-primary z-50 dropdowns_sidebar">
+                                            <div className="mt-2 flex w-full flex-col rounded-lg z-50 dropdowns_sidebar">
                                                 {item.hijos.map((hijo) => (
-                                                    <NavLink key={hijo.name} to={hijo.href} onClick={() => moduloActual(hijo.name)} className="px-4 py-2 flex gap-2 items-center rounded-lg text-sm text-white hover:bg-tito-bg-secondary">
+                                                    <NavLink key={hijo.name} to={hijo.href} onClick={() => moduloActual(hijo.name)} className="px-4 py-2 flex gap-2 items-center rounded-lg text-sm text-white hover:bg-gradient-to-br from-tito-primary to-tito-secondary">
                                                         {hijo.icon}
                                                         {hijo.name}
                                                     </NavLink>
@@ -112,7 +123,7 @@ const Sidebar = ({ navigation, setSidebarWidth, setModulo }: SidebarProps) => {
                                         )}
                                     </div>
                                 ) : (
-                                    <NavLink key={item.name} to={item.href} onClick={() => moduloActual(item.name)} className="-mx-3 flex gap-3 rounded-lg px-3 py-2 text-base text-white hover:bg-tito-bg-secondary">
+                                    <NavLink key={item.name} to={item.href} onClick={() => moduloActual(item.name)} className="-mx-3 flex gap-3 rounded-lg px-3 py-2 text-base text-white hover:bg-gradient-to-br from-tito-primary to-tito-secondary">
                                         {item.icon}
                                         {(expandirHover || expandido || isMobile) && item.name}
                                     </NavLink>
