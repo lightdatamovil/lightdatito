@@ -3,26 +3,38 @@ import { getPaises } from "./api"
 import type { Pais } from "./types"
 import axios from "axios"
 
+// La estructura real que devuelve la API
+interface Body {
+    existente_en_sistema: Pais[]
+    no_existente_en_sistema: Pais[]
+}
+
+// El estado del slice, con los arrays separados
 interface ListState {
-    list: Pais[]
+    existente: Pais[]
+    noExistente: Pais[]
     loadingList: boolean
     errorList: string | null
 }
 
+// Estado inicial
 const initialState: ListState = {
-    list: [],
+    existente: [],
+    noExistente: [],
     loadingList: false,
     errorList: null,
 }
 
-export const fetchPaises = createAsyncThunk<Pais[], void, { rejectValue: string }>("paises/list", async (_, thunkAPI) => {
+// Async thunk para obtener los países
+export const fetchPaises = createAsyncThunk<Body, void, { rejectValue: string }>("paises/list", async (_, thunkAPI) => {
     try {
         const res = await getPaises()
 
         if (!res.data.success) {
             return thunkAPI.rejectWithValue(res.data.message || "Error del servidor")
         }
-        return res.data.body
+
+        return res.data.body as unknown as Body
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
             if (error.response?.data?.message) {
@@ -34,6 +46,7 @@ export const fetchPaises = createAsyncThunk<Pais[], void, { rejectValue: string 
     }
 })
 
+// Slice
 const listSlice = createSlice({
     name: "list",
     initialState,
@@ -45,7 +58,8 @@ const listSlice = createSlice({
         })
         builder.addCase(fetchPaises.fulfilled, (state, action) => {
             state.loadingList = false
-            state.list = action.payload
+            state.existente = action.payload.existente_en_sistema
+            state.noExistente = action.payload.no_existente_en_sistema
         })
         builder.addCase(fetchPaises.rejected, (state, action) => {
             state.loadingList = false
